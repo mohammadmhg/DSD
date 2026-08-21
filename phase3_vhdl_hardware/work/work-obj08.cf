@@ -1,0 +1,25 @@
+v 4
+file . "../rtl/neural_network.vhd" "8dacb634a06ff6fefef8ed34c2ec100ca4c60f3a" "20260821174528.409":
+  entity neural_network at 31( 1682) + 0 on 25;
+  architecture rtl of neural_network at 47( 2364) + 0 on 26;
+file . "../rtl/roms/weights_output_rom.vhd" "7c86fcaeb51616f29b083d2286e2cec48b7a91a1" "20260821174518.252":
+  entity weights_output_rom at 12( 520) + 0 on 21;
+  architecture rtl of weights_output_rom at 24( 798) + 0 on 22;
+file . "../rtl/roms/weights_hidden_rom.vhd" "8df64c2ca6e5f73d0970312ae35770755f45602d" "20260821174456.757":
+  entity weights_hidden_rom at 12( 521) + 0 on 17;
+  architecture rtl of weights_hidden_rom at 24( 800) + 0 on 18;
+file . "../rtl/mac_unit.vhd" "2dfefddd886d04020460cc154337bcaeea575175" "20260821174445.632":
+  entity mac_unit at 12( 507) + 0 on 13;
+  architecture rtl of mac_unit at 29( 1095) + 0 on 14;
+file . "../rtl/nn_pkg.vhd" "b5d2abff1e8588fb6aa0269ecaeaf92510e68243" "20260821174439.466":
+  package nn_pkg at 14( 668) + 0 on 11 body;
+  package body nn_pkg at 67( 3104) + 0 on 12;
+file . "../rtl/relu_unit.vhd" "c7637723fa97e1b42f8b2869a1463aa7e9e15a15" "20260821174451.401":
+  entity relu_unit at 8( 325) + 0 on 15;
+  architecture rtl of relu_unit at 20( 584) + 0 on 16;
+file . "../rtl/roms/bias_hidden_rom.vhd" "088b00444c7b3e8edf236fee41b3b5848ebcbd40" "20260821174512.057":
+  entity bias_hidden_rom at 12( 516) + 0 on 19;
+  architecture rtl of bias_hidden_rom at 24( 787) + 0 on 20;
+file . "../rtl/roms/bias_output_rom.vhd" "491a294d09d14fc2b492f43a5e6fd05935a55784" "20260821174523.915":
+  entity bias_output_rom at 12( 516) + 0 on 23;
+  architecture rtl of bias_output_rom at 24( 787) + 0 on 24;
