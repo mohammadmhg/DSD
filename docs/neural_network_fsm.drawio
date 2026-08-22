@@ -1,0 +1,144 @@
+<mxfile host="65bd71144e">
+    <diagram name="neural_network FSM" id="fsm1">
+        <mxGraphModel dx="693" dy="2268" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1400" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="n1" value="S_IDLE&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;wait for start=1&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1EFE8;strokeColor=#5F5E5A;fontColor=#2C2C2A;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="20" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n2" value="S_H_INIT&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;clear acc, addr=0&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5EE;strokeColor=#0F6E56;fontColor=#04342C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="140" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n3" value="S_H_MAC&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;accumulate 64 products (one MAC per cycle)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5EE;strokeColor=#0F6E56;fontColor=#04342C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="260" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n4" value="S_H_BIAS&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;load hidden bias from ROM&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5EE;strokeColor=#0F6E56;fontColor=#04342C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="380" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n5" value="S_H_RESCALE&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;shift + saturate + ReLU&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5EE;strokeColor=#0F6E56;fontColor=#04342C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="500" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n6" value="S_H_NEXT&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;advance to next hidden neuron&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5EE;strokeColor=#0F6E56;fontColor=#04342C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="620" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n7" value="S_O_INIT&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;clear acc, addr=0&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAECE7;strokeColor=#993C1D;fontColor=#4A1B0C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="740" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n8" value="S_O_MAC&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;accumulate 16 products (one MAC per cycle)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAECE7;strokeColor=#993C1D;fontColor=#4A1B0C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="860" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n9" value="S_O_BIAS&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;load output bias from ROM&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAECE7;strokeColor=#993C1D;fontColor=#4A1B0C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="980" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n10" value="S_O_RESCALE&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;shift + saturate (no ReLU)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAECE7;strokeColor=#993C1D;fontColor=#4A1B0C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="1100" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n11" value="S_O_NEXT&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;advance to next output neuron&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAECE7;strokeColor=#993C1D;fontColor=#4A1B0C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="1220" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n12" value="S_ARGMAX_INIT&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;best_idx=0, best_val=output(0)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEEDFE;strokeColor=#534AB7;fontColor=#26215C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="1340" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n13" value="S_ARGMAX_STEP&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;compare 10 output logits&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEEDFE;strokeColor=#534AB7;fontColor=#26215C;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="1460" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="n14" value="S_DONE&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;digit_out = best_idx, done=1&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1EFE8;strokeColor=#5F5E5A;fontColor=#2C2C2A;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="1580" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" value="start=1" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n1" target="n2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n2" target="n3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" value="elem_idx=63" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n3" target="n4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n4" target="n5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n5" target="n6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" value="neuron_idx=15" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n6" target="n7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n7" target="n8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" value="elem_idx=15" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n8" target="n9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n9" target="n10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n10" target="n11" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" value="neuron_idx=9" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n11" target="n12" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e12" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n12" target="n13" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e13" value="step=10" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;" parent="1" source="n13" target="n14" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e14" value="elem_idx&lt;63" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;exitX=1;exitY=0.25;entryX=1;entryY=0.75;" parent="1" source="n3" target="n3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="580" y="270"/>
+                            <mxPoint x="580" y="310"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e15" value="elem_idx&lt;15" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;exitX=1;exitY=0.25;" parent="1" source="n8" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="580" y="870"/>
+                            <mxPoint x="580" y="910"/>
+                        </Array>
+                        <mxPoint x="530" y="910" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e16" value="step&lt;10" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;exitX=1;exitY=0.25;" parent="1" source="n13" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="580" y="1470"/>
+                            <mxPoint x="580" y="1510"/>
+                        </Array>
+                        <mxPoint x="520" y="1510" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e17" value="neuron_idx&lt;15" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#0F6E56;" parent="1" source="n6" target="n2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="260" y="650"/>
+                            <mxPoint x="260" y="170"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e18" value="neuron_idx&lt;9" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#993C1D;" parent="1" source="n11" target="n7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="220" y="1250"/>
+                            <mxPoint x="220" y="770"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e19" value="always" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#5F5E5A;" parent="1" source="n14" target="n1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="180" y="1610"/>
+                            <mxPoint x="180" y="50"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4" value="&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; padding: 0px;&quot;&gt;&lt;br&gt;&lt;/blockquote&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="500" y="-42" width="60" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
